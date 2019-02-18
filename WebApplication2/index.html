@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+    <script>
+        function login() {
+            var url = "http://localhost:34185/Webservice1.asmx/Login";
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: '{"userName":"1","pwd":"1"}',//和WebService的web方法的参数一一对应
+                dataType: 'json',
+                cache:false,
+                contentType: 'application/json',//
+                error: function () { },
+                success: function(data){
+                    if (data.d != null) {
+                        alert(data.d.Code+"  "+data.d.Message);
+                    }
+                    else alert("请求失败！");
+                }
+            });
+        }
+
+    </script>
+</head>
+<body>
+    <input type="button" value="登录" onclick="login()" />
+
+</body>
+</html>
